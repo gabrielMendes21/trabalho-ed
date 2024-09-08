@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "menu1.h": "c",
+        "stdio.h": "c",
+        "professor.h": "c",
+        "aluno.h": "c",
+        "validar_cpf.h": "c",
+        "stdbool.h": "c"
+    }
+}
