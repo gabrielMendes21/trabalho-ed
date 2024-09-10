@@ -5,6 +5,12 @@
         "professor.h": "c",
         "aluno.h": "c",
         "validar_cpf.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "pessoa.h": "c",
+        "stdlib.h": "c",
+        "tg.h": "c",
+        "projeto_integrador.h": "c",
+        "cpf_pode_votar.h": "c",
+        "eleitor.h": "c"
     }
 }

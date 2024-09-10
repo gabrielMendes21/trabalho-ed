@@ -6,11 +6,10 @@
 
 typedef struct
 {
-    int codigo;
+    Pessoa pes;
+    int matricula;
     int ano_letivo;
-    char curso[3];
-    int departamento;
-    char *nome;
-} aluno;
+    char dpto[MAX_SIGLA];
+} Aluno;
 
 #endif

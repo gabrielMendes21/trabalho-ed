@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#define MAX_CPF 15
+#define MAX_NOME 60
+#define MAX_SIGLA 10
+#define MAX 50
+
 // Menus
 #include "./menus/menu1.h"
 #include "./menus/menu2.h"
@@ -12,9 +17,25 @@
 #include "codigo_projeto_valido.h"
 
 // Structs
-#include "./structs/professor.h"
-#include "./structs/aluno.h"
-#include "./structs/projeto_integrador.h"
+#include "./structs/Pessoa.h"
+#include "./structs/Professor.h"
+#include "./structs/Aluno.h"
+#include "./structs/Projeto_integrador.h"
+#include "./structs/TG.h"
+#include "./structs/Eleitor.h"
+
+
+Professor docentes[MAX];
+int qtde_docentes;
+
+Aluno formandos[MAX];
+int qtde_formandos;
+
+Projeto_integrador listaPIs[MAX];
+int qtde_TGs;
+
+Eleitor comissao[MAX];
+int qtde_eleitores;
 
 int main(void) 
 {

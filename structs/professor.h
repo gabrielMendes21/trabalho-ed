@@ -1,11 +1,10 @@
 #ifndef PROFESSOR_h
 #define PROFESSOR_h
-
 typedef struct
 {
+    Pessoa pes;
     int codigo;
-    char curso[3];
-    char *nome;
-} professor;
+    char dpto[MAX_SIGLA];
+} Professor;
 
 #endif

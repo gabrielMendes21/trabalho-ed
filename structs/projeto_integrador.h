@@ -7,6 +7,6 @@ typedef struct
     int codigo_autor;
     int codigo_orientador;
     char *titulo;
-} projeto_integrador;
+} Projeto_integrador;
 
 #endif
