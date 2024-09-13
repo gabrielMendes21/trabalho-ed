@@ -89,7 +89,7 @@ int main(void)
             {
                 printf("Digite o CPF: ");
                 scanf("%s", &cpf);
-            } while(!validar_CPF(cpf) || !cpf_pode_votar(cpf, comissao_arquivo));
+            } while(!validar_CPF(cpf) || !cpf_pode_votar(cpf, comissao_arquivo)); // TODO: completar ambas as funções
 
             // Se o CPF for válido, peça para o usuário digitar o código do projeto no qual ele quer votar
 
@@ -100,7 +100,7 @@ int main(void)
             {
                 printf("Digite o código do projeto: ");
                 scanf("%s", codigo_projeto);
-            } while (!codigo_projeto_valido(listaPIs, codigo_projeto));
+            } while (!codigo_projeto_valido(listaPIs, codigo_projeto)); // TODO: completar a função
             
             // Caso o código do projeto seja válido, o projeto recebe mais um voto e o voto dado por esse CPF é "marcado"
             Eleitor *eleitor;
@@ -112,14 +112,14 @@ int main(void)
                 }
             }
 
-            computar_voto(listaPIs, eleitor, codigo_projeto);
+            computar_voto(listaPIs, eleitor, codigo_projeto); // TODO: completar a função
         }
         else if (menu2_op == 'b' || menu2_op == 'B')
         {
             // Caso a opção seja `b) Suspender votação`:
 
             // TODO:
-            if (!suspender_votacao(comissao))
+            if (!suspender_votacao(comissao)) // TODO: completar a função
             {
                 printf("Erro ao suspender votação. Tente novamente.\n");
                 return 2;
@@ -130,7 +130,7 @@ int main(void)
             // Caso a opção seja `c) Concluir votação`:
             
             // TODO:
-            if (!gerar_resultado(listaPIs, comissao, formandos))
+            if (!gerar_resultado(listaPIs, comissao, formandos)) // TODO: completar a função
             {
                 printf("Erro ao gerar o resultado da votação. Tente novamente.\n");
             }
@@ -151,6 +151,6 @@ int main(void)
         }
 
         // Gravar os votos do arquivo parcial.txt nas estruturas apresentadas
-        retomar_votacao(parcial_arquivo);
+        retomar_votacao(parcial_arquivo); // TODO: completar a função
     }
 }
