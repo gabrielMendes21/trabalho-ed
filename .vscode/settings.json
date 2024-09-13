@@ -11,6 +11,11 @@
         "tg.h": "c",
         "projeto_integrador.h": "c",
         "cpf_pode_votar.h": "c",
-        "eleitor.h": "c"
+        "eleitor.h": "c",
+        "computar_voto.h": "c",
+        "suspender_votacao.h": "c",
+        "menu2.h": "c",
+        "retomar_votacao.h": "c",
+        "gerar_resultado.h": "c"
     }
 }

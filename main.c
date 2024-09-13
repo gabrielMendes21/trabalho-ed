@@ -11,10 +11,15 @@
 #include "./menus/menu1.h"
 #include "./menus/menu2.h"
 
+
 // Utils
 #include "./utils/validar_CPF.h"
-#include "cpf_pode_votar.h"
-#include "codigo_projeto_valido.h"
+#include "./utils/cpf_pode_votar.h"
+#include "./utils/codigo_projeto_valido.h"
+#include "./utils/computar_voto.h"
+#include "./utils/suspender_votacao.h"
+#include "./utils/gerar_resultado.h"
+#include "./utils/retomar_votacao.h"
 
 // Structs
 #include "./structs/Pessoa.h"
@@ -31,7 +36,8 @@ int qtde_docentes;
 Aluno formandos[MAX];
 int qtde_formandos;
 
-Projeto_integrador listaPIs[MAX];
+// Projeto_integrador listaPIs[MAX];
+TG listaPIs[MAX];
 int qtde_TGs;
 
 Eleitor comissao[MAX];
@@ -40,6 +46,10 @@ int qtde_eleitores;
 int main(void) 
 {
     char menu1_op, menu2_op;
+
+    // TODO: ler os arquivos dos PI's de cada curso e colocar eles no vetor de TG's
+    char siglas[7][4] = {"AMS", "ADS", "DSM", "CEX", "EMP", "LOG", "POL",};  
+    cadastrar_projetos(listaPIs, siglas);
 
     // Mostra o menu enquanto o usuário não digitar a opção correta
     do
@@ -63,13 +73,12 @@ int main(void)
         {
             // Caso a opção seja `a) Entrar com voto`:
 
-            // TODO:
             // Solicitar o CPF
             char cpf;
 
-            FILE *comissao = fopen("comissao.txt", "r");
+            FILE *comissao_arquivo = fopen("comissao.txt", "r");
 
-            if (comissao == NULL)
+            if (comissao_arquivo == NULL)
             {
                 printf("Arquivo `comissao.txt` não existe. Crie o arquivo, insira os CPF's que podem votar e tente novamente\n");
                 return 1;
@@ -80,7 +89,7 @@ int main(void)
             {
                 printf("Digite o CPF: ");
                 scanf("%s", &cpf);
-            } while(!validar_CPF(cpf) || !cpf_pode_votar(cpf, comissao));
+            } while(!validar_CPF(cpf) || !cpf_pode_votar(cpf, comissao_arquivo));
 
             // Se o CPF for válido, peça para o usuário digitar o código do projeto no qual ele quer votar
 
@@ -91,38 +100,57 @@ int main(void)
             {
                 printf("Digite o código do projeto: ");
                 scanf("%s", codigo_projeto);
-            } while (!codigo_projeto_valido(codigo_projeto));
+            } while (!codigo_projeto_valido(listaPIs, codigo_projeto));
             
-
-            // Checar se o código do projeto é válido
-            if (codigo_projeto_valido(codigo_projeto))
+            // Caso o código do projeto seja válido, o projeto recebe mais um voto e o voto dado por esse CPF é "marcado"
+            Eleitor *eleitor;
+            for (int i = 0; i < qtde_eleitores; i++)
             {
-                // TODO: Caso seja válido, o projeto recebe mais um voto e o voto dado por esse CPF é registrado em `parcial.txt`
+                if (comissao[i].cpf == cpf)
+                {
+                    eleitor = &comissao[i];
+                }
             }
+
+            computar_voto(listaPIs, eleitor, codigo_projeto);
         }
         else if (menu2_op == 'b' || menu2_op == 'B')
         {
             // Caso a opção seja `b) Suspender votação`:
 
             // TODO:
-            // Gere o arquivo `parcial.txt` com todos os votos até o momento
+            if (!suspender_votacao(comissao))
+            {
+                printf("Erro ao suspender votação. Tente novamente.\n");
+                return 2;
+            }
         } 
         else if (menu2_op == 'c' || menu2_op == 'C')
         {
             // Caso a opção seja `c) Concluir votação`:
             
             // TODO:
-            // Gere o arquivo `resultado.txt` com o resultado baseado nos votos até o momento
+            if (!gerar_resultado(listaPIs, comissao, formandos))
+            {
+                printf("Erro ao gerar o resultado da votação. Tente novamente.\n");
+            }
         }
-
-        
-        
         
     } 
     else if (menu1_op == 'b' || menu1_op == 'B')
     {
         // TODO: caso a opção seja a `b) Continuar votação gravada`:
-            // Leia o arquivo `parcial.txt`
+        // Leia o arquivo `parcial.txt`
             // Se ele não existir, informe o problema e volte para o menu1
+        FILE *parcial_arquivo = fopen("./arquivos_de_saida/parcial.txt", "r");
+
+        if (parcial_arquivo == NULL)
+        {
+            printf("Erro ao abrir parcial.txt. Certifique-se de que ele existe e tente novamente\n");
+            return 1;
+        }
+
+        // Gravar os votos do arquivo parcial.txt nas estruturas apresentadas
+        retomar_votacao(parcial_arquivo);
     }
 }
