@@ -4,6 +4,7 @@
 bool validar_CPF(char *cpf)
 {
     // TODO: validar o CPF fornecido
+    
     return true;
 }
 
