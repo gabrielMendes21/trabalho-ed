@@ -1,6 +1,7 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
 
 #define MAX_CPF 15
 #define MAX_NOME 60
@@ -11,6 +12,13 @@
 #include "./menus/menu1.h"
 #include "./menus/menu2.h"
 
+// Structs
+#include "./structs/Pessoa.h"
+#include "./structs/Professor.h"
+#include "./structs/Aluno.h"
+#include "./structs/Projeto_integrador.h"
+#include "./structs/TG.h"
+#include "./structs/Eleitor.h"
 
 // Utils
 #include "./utils/validar_CPF.h"
@@ -20,15 +28,10 @@
 #include "./utils/suspender_votacao.h"
 #include "./utils/gerar_resultado.h"
 #include "./utils/retomar_votacao.h"
-
-// Structs
-#include "./structs/Pessoa.h"
-#include "./structs/Professor.h"
-#include "./structs/Aluno.h"
-#include "./structs/Projeto_integrador.h"
-#include "./structs/TG.h"
-#include "./structs/Eleitor.h"
-
+#include "./utils/cadastrar_projetos.h"
+#include "./utils/cadastrar_alunos.h"
+#include "./utils/cadastrar_comissao.h"
+#include "./utils/cadastrar_professores.h"
 
 Professor docentes[MAX];
 int qtde_docentes;
@@ -47,9 +50,13 @@ int main(void)
 {
     char menu1_op, menu2_op;
 
-    // TODO: ler os arquivos dos PI's de cada curso e colocar eles no vetor de TG's
     char siglas[7][4] = {"AMS", "ADS", "DSM", "CEX", "EMP", "LOG", "POL",};  
-    cadastrar_projetos(listaPIs, siglas);
+
+    // Chamar as seguintes funções para ler os arquivos de entrada e cadastrar os dados nos vetores acima
+    cadastrar_professores(docentes, &qtde_docentes); // TODO: completar a função
+    cadastrar_alunos(formandos, &qtde_formandos); // TODO: completar a função
+    cadastrar_projetos(listaPIs, siglas, &qtde_TGs); // TODO: completar a função
+    cadastrar_comissao(comissao, &qtde_eleitores); // TODO: completar a função
 
     // Mostra o menu enquanto o usuário não digitar a opção correta
     do
@@ -73,9 +80,6 @@ int main(void)
         {
             // Caso a opção seja `a) Entrar com voto`:
 
-            // Solicitar o CPF
-            char cpf;
-
             FILE *comissao_arquivo = fopen("comissao.txt", "r");
 
             if (comissao_arquivo == NULL)
@@ -85,6 +89,7 @@ int main(void)
             }
 
             // Solicitar o CPF
+            char cpf[15];
             do 
             {
                 printf("Digite o CPF: ");
@@ -102,7 +107,7 @@ int main(void)
                 scanf("%s", codigo_projeto);
             } while (!codigo_projeto_valido(listaPIs, codigo_projeto)); // TODO: completar a função
             
-            // Caso o código do projeto seja válido, o projeto recebe mais um voto e o voto dado por esse CPF é "marcado"
+            // Caso o código do projeto seja válido, o projeto recebe mais um voto e o CPF em questão não pode votar novamente
             Eleitor *eleitor;
             for (int i = 0; i < qtde_eleitores; i++)
             {

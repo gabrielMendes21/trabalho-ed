@@ -1,3 +1,0 @@
-2
-45 234 567 FatecFlix
-12 723 123 Metodologia para ensino de programação
