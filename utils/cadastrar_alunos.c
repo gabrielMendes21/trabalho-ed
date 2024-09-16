@@ -1,7 +1,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h> // Para a função getcwd
+#include <string.h>
 
 #include "cadastrar_alunos.h"
 #include "../structs/Aluno.h"
@@ -13,22 +13,34 @@ bool cadastrar_alunos(Aluno alunos[], int *qtde_alunos)
     // Não se esqueca de atualizar a quantidade de alunos no vetor
     
     // Abertura do arquivo
-    FILE *alunos_arquivo = fopen("./arquivos_de_entrada/aluno.txt", "r");
+    FILE *file = fopen("./arquivos_de_entrada/aluno.txt", "r");
 
-    if (alunos_arquivo == NULL)
-    {
-        printf("Erro ao carregar arquivo\n");
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo\n");
         return false;
     }
 
-    int numero_alunos, id;
-    char curso[3];
-    
-    // Leitura dos dados do arquivo
-    fscanf(alunos_arquivo, "%i", &numero_alunos);
-    fscanf(alunos_arquivo, "%i", &id);
-    fscanf(alunos_arquivo, "%s", curso);
+    int numero_alunos;
+    fscanf(file, "%d\n", &numero_alunos);  // Leitura da primeira linha
 
-    printf("%s\n", curso);
+    // Leitura dos dados de cada aluno
+    for (int i = 0; i < numero_alunos; i++) {
+        char linha[100];
+
+        // Lê uma linha inteira do arquivo
+        if (fgets(linha, sizeof(linha), file) != NULL) {
+            // Usamos sscanf para fazer o parsing da linha
+            sscanf(linha, "%d %d %s %d %[^\n]",
+                   &alunos[i].matricula,
+                   &alunos[i].ano_letivo,
+                   alunos[i].dpto,
+                   &alunos[i].pes.idade,
+                   alunos[i].pes.nome);
+        }
+
+        (*qtde_alunos)++;
+    }
+
+    fclose(file);
     return true;
 }

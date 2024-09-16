@@ -1,10 +1,10 @@
 #ifndef ALUNO_h
 #define ALUNO_h
 
-// Ano letivo o aluno 
+// Ano letivo do aluno 
 #define ANO_LETIVO 3
 
-typedef struct
+typedef struct Aluno
 {
     Pessoa pes;
     int matricula;
