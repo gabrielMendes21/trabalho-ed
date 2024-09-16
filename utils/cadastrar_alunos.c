@@ -8,7 +8,6 @@
 
 bool cadastrar_alunos(Aluno alunos[], int *qtde_alunos)
 {
-    // TODO
     // Ler o arquivo `aluno.txt` e criar um dado do tipo `Aluno` para cada um
     // Não se esqueca de atualizar a quantidade de alunos no vetor
     
