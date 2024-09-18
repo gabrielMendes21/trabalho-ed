@@ -13,7 +13,7 @@
 
 // Utils
 #include "./utils/validar_CPF.c"
-// #include "./utils/cpf_pode_votar.c"
+#include "./utils/cpf_pode_votar.c"
 // #include "./utils/codigo_projeto_valido.c"
 // #include "./utils/computar_voto.c"
 // #include "./utils/suspender_votacao.c"
