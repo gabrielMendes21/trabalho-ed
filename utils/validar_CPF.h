@@ -23,7 +23,7 @@ bool validar_CPF(char cpf[15]) {
                 return false;
             }
         } else if (i == 11) {
-            // Posição 11 deve ser hifen '-'
+            // Posição 11 deve ser hífen '-'
             if (cpf[i] != '-') {
                 printf("CPF sem a formatação correta! \n");
                 return false;
@@ -37,11 +37,11 @@ bool validar_CPF(char cpf[15]) {
         }
     }
 
-    char cpfSomenteNumeros[11];// Para armazenar os 9 primeiros dígitos do CPF mais os dois verificadores
-    int j = 0;// Contador
-    int contDv1 = 10;// Contador de multiplicação para DV1
-    int contDv2 = 11;// Contador de multiplicação para DV2
-    int dv1 = 0, dv2 = 0;// Variáveis para armazenar os resultados
+    char cpfSomenteNumeros[11];  // Para armazenar os 9 primeiros dígitos do CPF mais os dois verificadores
+    int j = 0;                   // Contador
+    int contDv1 = 10;             // Contador de multiplicação para DV1
+    int contDv2 = 11;             // Contador de multiplicação para DV2
+    int dv1 = 0, dv2 = 0;         // Variáveis para armazenar os resultados
 
     // Obtém os 9 primeiros dígitos do CPF (sem formatação)
     for (int i = 0; i < 14; i++) {
@@ -51,6 +51,10 @@ bool validar_CPF(char cpf[15]) {
         }
     }
     
+    //armazenando os digitos verificadores que foram inseridos na entrada(original)
+    int priDigitoEntrada = cpfSomenteNumeros[9] - '0';
+    int segDigitoEntrada = cpfSomenteNumeros[10] - '0';
+
     // Calcula o primeiro dígito verificador (dv1)
     for (int i = 0; i < 9; i++) {
         dv1 += (cpfSomenteNumeros[i] - '0') * contDv1;
@@ -58,8 +62,12 @@ bool validar_CPF(char cpf[15]) {
         contDv1--;
     }
 
-    // Ajusta o valor de dv1 conforme regra de CPF
-    dv1 = (dv1 % 11 < 2) ? 0 : 11 - (dv1 % 11);
+    // Novo ajuste do valor de dv1 conforme regra de CPF 
+    if (dv1 % 11 < 2) {
+        dv1 = 0;
+    } else {
+        dv1 = 11 - (dv1 % 11);
+    }
     printf("\nPrimeiro dígito verificador (dv1): %d\n", dv1);
 
     // Inclui o DV1 no array de números do CPF para o cálculo do DV2
@@ -71,13 +79,19 @@ bool validar_CPF(char cpf[15]) {
         printf("dv2: %d + %d * %d \n", dv2, cpfSomenteNumeros[i] - '0', contDv2);
         contDv2--;
     }
-
-    // Ajusta o valor de dv2 conforme regra de CPF
-    dv2 = (dv2 % 11 < 2) ? 0 : 11 - (dv2 % 11);
+        
+    dv2 = dv2 % 11;
+    
+    // // Ajusta o valor de dv2 conforme regra de CPF 
+    if (dv2 < 2) {
+        dv2 = 0;
+    } else {
+        dv2 = 11 - dv2 ;
+    }
     printf("\nSegundo dígito verificador (dv2): %d\n", dv2);
-
+    
     // Comparar dv1 e dv2 com os dois últimos dígitos do CPF fornecido
-    if (dv1 == (cpfSomenteNumeros[9] - '0') && dv2 == (cpfSomenteNumeros[10] - '0')) {
+    if ((dv1 == priDigitoEntrada) && (dv2 == (segDigitoEntrada))) {
         printf("CPF válido!\n");
     } else {
         printf("CPF inválido!\n");
