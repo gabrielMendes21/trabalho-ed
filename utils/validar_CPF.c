@@ -55,7 +55,6 @@ bool validar_CPF(char cpf[15]) {
     // Calcula o primeiro dígito verificador (dv1)
     for (int i = 0; i < 9; i++) {
         dv1 += (cpfSomenteNumeros[i] - '0') * contDv1;
-        printf("dv1: %d + %d * %d \n", dv1, cpfSomenteNumeros[i] - '0', contDv1);
         contDv1--;
     }
 
@@ -73,7 +72,6 @@ bool validar_CPF(char cpf[15]) {
     // Calcula o segundo dígito verificador (dv2)
     for (int i = 0; i < 10; i++) {
         dv2 += (cpfSomenteNumeros[i] - '0') * contDv2;
-        printf("dv2: %d + %d * %d \n", dv2, cpfSomenteNumeros[i] - '0', contDv2);
         contDv2--;
     }
         
@@ -85,17 +83,13 @@ bool validar_CPF(char cpf[15]) {
     } else {
         dv2 = 11 - dv2 ;
     }
-    printf("\nSegundo dígito verificador (dv2): %d\n\n", dv2);
-    
-     printf("\nDígitos verificadores originais(entrada): %d %d\n", priDigitoEntrada, segDigitoEntrada);
-    printf("\nDígitos verificadores calculados: %d %d\n\n", dv1, dv2);
 
     
     // Comparar dv1 e dv2 com os dois últimos dígitos do CPF fornecido
     if ((dv1 == priDigitoEntrada) && (dv2 == (segDigitoEntrada))) {
-        printf("CPF válido!\n");
+        printf("CPF valido!\n");
     } else {
-        printf("CPF inválido!\n");
+        printf("CPF invalido!\n");
         return false;
     }
 

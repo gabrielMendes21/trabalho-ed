@@ -47,7 +47,7 @@ int main(void)
 {
     char menu1_op, menu2_op;
 
-    char siglas[7][4] = {"AMS", "ADS", "DSM", "CEX", "EMP", "LOG", "POL",};  
+    char *siglas[7] = {"AMS", "ADS", "DSM", "CEX", "EMP", "LOG", "POL",};  
 
     // Chamar as seguintes funções para ler os arquivos de entrada e cadastrar os dados nos vetores acima
     cadastrar_professores(docentes, &qtde_docentes); // TODO: completar a função
@@ -77,7 +77,7 @@ int main(void)
         {
             // Caso a opção seja `a) Entrar com voto`:
 
-            FILE *comissao_arquivo = fopen("comissao.txt", "r");
+            FILE *comissao_arquivo = fopen("./arquivos_de_entrada/comissao.txt", "r");
 
             if (comissao_arquivo == NULL)
             {
@@ -91,7 +91,7 @@ int main(void)
             {
                 printf("Digite o CPF: ");
                 scanf("%s", &cpf);
-            } while(!validar_CPF(cpf) || !cpf_pode_votar(cpf, comissao_arquivo)); // TODO: completar ambas as funções
+            } while(!validar_CPF(cpf) || !cpf_pode_votar(cpf, comissao_arquivo));
 
             // Se o CPF for válido, peça para o usuário digitar o código do projeto no qual ele quer votar
 
