@@ -16,6 +16,11 @@
         "suspender_votacao.h": "c",
         "menu2.h": "c",
         "retomar_votacao.h": "c",
-        "gerar_resultado.h": "c"
+        "gerar_resultado.h": "c",
+        "cadastrar_projetos.h": "c",
+        "codigo_projeto_valido.h": "c",
+        "cadastrar_professores.h": "c",
+        "cadastrar_alunos.h": "c",
+        "cadastrar_comissao.h": "c"
     }
 }

@@ -1,5 +1,6 @@
 #ifndef PROFESSOR_h
 #define PROFESSOR_h
+
 typedef struct
 {
     Pessoa pes;
