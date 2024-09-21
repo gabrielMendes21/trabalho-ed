@@ -1,10 +1,8 @@
 #ifndef VALIDARCPF_h
 #define VALIDARCPF_H
 
-bool validar_CPF(char *cpf)
-{
-    // TODO: validar o CPF fornecido
-    return true;
-}
+#include <stdbool.h>
+
+bool validar_CPF(char cpf[15]);
 
 #endif
