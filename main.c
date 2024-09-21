@@ -11,15 +11,14 @@
 #include "./menus/menu1.h"
 #include "./menus/menu2.h"
 
-
 // Utils
-#include "./utils/validar_CPF.h"
-#include "./utils/cpf_pode_votar.h"
-#include "./utils/codigo_projeto_valido.h"
-#include "./utils/computar_voto.h"
-#include "./utils/suspender_votacao.h"
-#include "./utils/gerar_resultado.h"
-#include "./utils/retomar_votacao.h"
+#include "./utils/validar_CPF.c"
+#include "./utils/cpf_pode_votar.c"
+// #include "./utils/codigo_projeto_valido.c"
+// #include "./utils/computar_voto.c"
+// #include "./utils/suspender_votacao.c"
+// #include "./utils/gerar_resultado.c"
+// #include "./utils/retomar_votacao.c"
 
 // Structs
 #include "./structs/Pessoa.h"
@@ -43,7 +42,7 @@ int qtde_TGs;
 Eleitor comissao[MAX];
 int qtde_eleitores;
 
-int main(void) 
+int main(void)
 {
     char menu1_op, menu2_op;
 
