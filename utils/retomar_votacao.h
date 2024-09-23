@@ -4,10 +4,9 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-bool gerar_resultado(FILE *parcial)
-{
-    // Gere o arquivo `resultado.txt` com o resultado baseado nos votos até o momento
-    return true;
-}
+#include "../structs/TG.h"
+#include "../structs/Eleitor.h"
+
+bool retomar_votacao(FILE *parcial_arquivo, TG listaPIs[], Eleitor comissao[], int *qtde_TGs, int *qtde_eleitores);
 
 #endif
