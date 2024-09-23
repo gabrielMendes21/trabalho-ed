@@ -127,7 +127,7 @@ int main(void)
                 }
             }
 
-            computar_voto(listaPIs, eleitor, codigo_projeto); // TODO: completar a função
+            computar_voto(listaPIs, &qtde_TGs, eleitor, codigo_projeto); // TODO: completar a função
         }
         else if (menu2_op == 'b' || menu2_op == 'B')
         {
