@@ -1,6 +1,10 @@
 #ifndef SUSPENDER_VOTACAO_H
 #define SUSPENDER_VOTACAO_H
 
+#include <stdbool.h>
+
+#include "structs/Eleitor.h"
+
 bool codigo_projeto_valido(Eleitor comissao[])
 {
     // Gere o arquivo `parcial.txt` com todos os votos até o momento

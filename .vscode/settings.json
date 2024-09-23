@@ -21,6 +21,7 @@
         "codigo_projeto_valido.h": "c",
         "cadastrar_professores.h": "c",
         "cadastrar_alunos.h": "c",
-        "cadastrar_comissao.h": "c"
+        "cadastrar_comissao.h": "c",
+        "string.h": "c"
     }
 }
