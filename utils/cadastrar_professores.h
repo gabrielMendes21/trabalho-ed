@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 
-#include "structs/professor.h"
+#include "../structs/professor.h"
 
 bool cadastrar_professores(Professor profs[], int *qtde_profs)
 {

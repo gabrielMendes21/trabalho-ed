@@ -4,9 +4,9 @@
 
 #include <stdbool.h>
 
-#include "structs/TG.h"
-#include "structs/Eleitor.h"
-#include "structs/aluno.h"
+#include "../structs/TG.h"
+#include "../structs/Eleitor.h"
+#include "../structs/aluno.h"
 
 bool gerar_resultado(TG projetos[], Eleitor comissao[], Aluno formandos[])
 {

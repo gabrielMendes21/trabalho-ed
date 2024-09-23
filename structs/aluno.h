@@ -4,6 +4,8 @@
 // Ano letivo do aluno 
 #define ANO_LETIVO 3
 
+#include "./Pessoa.h"
+
 typedef struct Aluno
 {
     Pessoa pes;

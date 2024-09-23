@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 
-#include "structs/Eleitor.h"
+#include "../structs/Eleitor.h"
 
 bool codigo_projeto_valido(Eleitor comissao[])
 {

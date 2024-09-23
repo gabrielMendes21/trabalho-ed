@@ -3,8 +3,8 @@
 
 #include <stdbool.h>
 
-#include "structs/TG.h"
-#include "structs/Eleitor.h"
+#include "../structs/TG.h"
+#include "../structs/Eleitor.h"
 
 bool computar_voto(TG projetos[], Eleitor *eleitor, int codigo_projeto)
 {

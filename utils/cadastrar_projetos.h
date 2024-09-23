@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 
-#include "structs/TG.h"
+#include "../structs/TG.h"
 
 bool cadastrar_projetos(TG projetos[], char cursos[][], int *qtde_projetos)
 {

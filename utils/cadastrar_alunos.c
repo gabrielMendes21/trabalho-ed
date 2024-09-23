@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "cadastrar_alunos.h"
+#include "./cadastrar_alunos.h"
 #include "../structs/Aluno.h"
 
 bool cadastrar_alunos(Aluno alunos[], int *qtde_alunos)

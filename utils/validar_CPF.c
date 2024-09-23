@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include <string.h>
 
+#include "./validar_CPF.h"
+
 bool validar_CPF(char cpf[15]) {
     // Verifica o tamanho do CPF (formato 123.456.789-00, total 14 caracteres)
     if (strlen(cpf) != 14) {

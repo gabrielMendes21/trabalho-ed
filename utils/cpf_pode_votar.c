@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+#include "./cpf_pode_votar.h"
+
 bool cpf_pode_votar(char *cpf, FILE *arquivo_comissao) 
 {
     int qtd_Cpfs;
