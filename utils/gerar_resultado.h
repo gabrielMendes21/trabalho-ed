@@ -4,13 +4,18 @@
 #ifndef GERAR_RESULTADO_H
 #define GERAR_RESULTADO_H
 
-bool gerar_resultado(TG projetos[], Eleitor comissao[], Aluno formandos[], professor prof[], int tamanho_proj, int tamanho_eleitor, int tamanho_aluno, int tamanho_professor)
+#include "../structs/aluno.h"
+#include "../structs/TG.h"
+#include "../structs/Eleitor.h"
+#include "../structs/professor.h"
+
+bool gerar_resultado(TG projetos[], Eleitor comissao[], Aluno formandos[], Professor prof[], int tamanho_proj, int tamanho_eleitor, int tamanho_aluno, int tamanho_professor)
 {
    
    TG projeto_mais_votado = projetos[0];
     // procura projeto mais votado
     for (int i = 1; i < tamanho_proj; i++) {
-        if (projetos[i].votos > projeto_mais_votado.votos) {
+        if (projetos[i].qtde_votos > projeto_mais_votado.qtde_votos) {
             projeto_mais_votado = projetos[i];
         }
     }
@@ -36,7 +41,7 @@ bool gerar_resultado(TG projetos[], Eleitor comissao[], Aluno formandos[], profe
         }
     } 
 
-    professor professor_vencedor = prof[0];
+    Professor professor_vencedor = prof[0];
     // procura orientador do projeto vencedor pelo código
     for(int i = 1; i< tamanho_professor; i++){
         if(projeto_mais_votado.codigo_orientador==prof[i].codigo){
