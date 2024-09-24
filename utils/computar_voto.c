@@ -7,7 +7,7 @@
 #include "../structs/TG.h"
 
 
-bool computar_voto(TG projetos[], int *qtd_projetos, Eleitor *eleitor, int codigo_projeto)
+bool computar_voto(TG projetos[], int *qtd_projetos, Eleitor *eleitor, char *codigo_projeto)
 {
     // Adicionar o CPF do eleitor e o código do Projeto (TG) votado 
     if(eleitor->votou){
@@ -16,11 +16,11 @@ bool computar_voto(TG projetos[], int *qtd_projetos, Eleitor *eleitor, int codig
     }
 
     eleitor->votou = true;
-    eleitor->codigo_TG = codigo_projeto;
+    eleitor->codigo_TG = atoi(codigo_projeto);
 
     // Incrementar a quantidade de votos do projeto
     for(int i = 0; i < *qtd_projetos; i++){
-        if(projetos[i].codigo == codigo_projeto){
+        if(projetos[i].codigo == atoi(codigo_projeto)){
             projetos[i].qtde_votos++;
         }
     }

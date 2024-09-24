@@ -16,14 +16,14 @@
 // Utils
 #include "./utils/validar_CPF.c"
 #include "./utils/cpf_pode_votar.c"
-// #include "./utils/codigo_projeto_valido.c"
-// #include "./utils/computar_voto.c"
-// #include "./utils/suspender_votacao.c"
+#include "./utils/codigo_projeto_valido.c"
+#include "./utils/computar_voto.c"
+#include "./utils/suspender_votacao.c"
 // #include "./utils/retomar_votacao.c"
-// #include "./utils/gerar_resultado.c"
+#include "./utils/gerar_resultado.c"
 #include "./utils/cadastrar_projetos.c"
-// #include "./utils/cadastrar_comissao.c"
-// #include "./utils/cadastrar_professores.c"
+#include "./utils/cadastrar_comissao.c"
+#include "./utils/cadastrar_professores.c"
 #include "./utils/cadastrar_alunos.c"
 
 // Structs
@@ -65,8 +65,8 @@ int main(void)
     cadastrar_projetos(listaPIs, cursos, &qtde_TGs);
     cadastrar_professores(docentes, &qtde_docentes);
     cadastrar_alunos(formandos, &qtde_formandos);
-    // cadastrar_projetos(listaPIs, cursos, &qtde_TGs); // TODO: completar a função
-    // cadastrar_comissao(comissao, &qtde_eleitores); // TODO: completar a função
+    cadastrar_projetos(listaPIs, cursos, &qtde_TGs); // TODO: completar a função
+    cadastrar_comissao(comissao, &qtde_eleitores); // TODO: completar a função
 
     // Mostra o menu enquanto o usuário não digitar a opção correta
     do
@@ -115,7 +115,7 @@ int main(void)
             {
                 printf("Digite o código do projeto: ");
                 scanf("%s", codigo_projeto);
-            } while (!codigo_projeto_valido(listaPIs, codigo_projeto)); // TODO: completar a função
+            } while (!codigo_projeto_valido(listaPIs, qtde_TGs, codigo_projeto)); 
             
             // Caso o código do projeto seja válido, o projeto recebe mais um voto e o CPF em questão não pode votar novamente
             Eleitor *eleitor;
@@ -127,14 +127,14 @@ int main(void)
                 }
             }
 
-            computar_voto(listaPIs, &qtde_TGs, eleitor, codigo_projeto); // TODO: completar a função
+            computar_voto(listaPIs, &qtde_TGs, eleitor, codigo_projeto); 
         }
         else if (menu2_op == 'b' || menu2_op == 'B')
         {
             // Caso a opção seja `b) Suspender votação`:
 
             // TODO:
-            if (!suspender_votacao(comissao)) // TODO: completar a função
+            if (!suspender_votacao(comissao, &qtde_eleitores))
             {
                 printf("Erro ao suspender votação. Tente novamente.\n");
                 return 2;
@@ -143,10 +143,8 @@ int main(void)
         else if (menu2_op == 'c' || menu2_op == 'C')
         {
             // Caso a opção seja `c) Concluir votação`:
-            
-            // TODO:
-            if (!gerar_resultado(listaPIs, comissao, formandos)) // TODO: completar a função
-            {
+            // Gerar um arquivo chamado resultado.txt com os dados do projeto vencedor
+            if (!gerar_resultado(listaPIs, comissao, formandos, docentes, qtde_TGs, qtde_eleitores, qtde_formandos, qtde_docentes)) {
                 printf("Erro ao gerar o resultado da votação. Tente novamente.\n");
             }
         }
@@ -166,6 +164,6 @@ int main(void)
         }
 
         // Gravar os votos do arquivo parcial.txt nas estruturas apresentadas
-        retomar_votacao(parcial_arquivo, listaPIs, comissao, docentes, formandos, &qtde_docentes, &qtde_formandos, &qtde_eleitores, &qtde_TGs, cursos); // TODO: completar a função
+        // retomar_votacao(parcial_arquivo, listaPIs, comissao, docentes, formandos, &qtde_docentes, &qtde_formandos, &qtde_eleitores, &qtde_TGs, cursos); // TODO: completar a função
     }
 }

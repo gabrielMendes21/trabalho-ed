@@ -17,20 +17,20 @@ bool cadastrar_professores(Professor profs[], int *qtde_profs) {
 
     // Inicializa a contagem de professores
     *qtde_profs = 0;
-    fscanf(file, "%d\n", &qtde_profs);
+    fscanf(file, "%d\n", qtde_profs);
 
 
-for (int i = 0; i < qtde_profs; i++) {
+for (int i = 0; i < *qtde_profs; i++) {
         char linha[100];
 
         // Lê uma linha inteira do arquivo
         if (fgets(linha, sizeof(linha), file) != NULL) {
             // Usamos sscanf para fazer o parsing da linha
             sscanf(linha, "%d %d %s %d %[^\n]",
-                   &professor[i].codigo,
-                   professor[i].dpto,
-                   &professor[i].pes.idade,
-                   professor[i].pes.nome);
+                   &profs[i].codigo,
+                   profs[i].dpto,
+                   &profs[i].pes.idade,
+                   profs[i].pes.nome);
         }
 
         (*qtde_profs)++;

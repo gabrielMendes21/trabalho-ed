@@ -4,7 +4,7 @@
 #include "./suspender_votacao.h"
 #include "../structs/Eleitor.h"
 
-bool codigo_projeto_valido(Eleitor comissao[], int *qtde_eleitores) {
+bool suspender_votacao(Eleitor comissao[], int *qtde_eleitores) {
     FILE *arquivo;
     int votos = 0;
 

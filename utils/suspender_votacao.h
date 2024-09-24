@@ -6,6 +6,6 @@
 
 #include "../structs/Eleitor.h"
 
-bool codigo_projeto_valido(Eleitor comissao[]);
+bool suspender_votacao(Eleitor comissao[], int *qtde_eleitores);
 
 #endif
