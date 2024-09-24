@@ -10,7 +10,7 @@
 #define CURSOS 7
 
 // Função para cadastrar projetos
-bool cadastrar_projetos(TG listaProjetos[], char *cursos[], int *qtde_projetos) {
+bool cadastrar_projetos(TG listaProjetos[], Aluno alunos[], char *cursos[], int *qtde_projetos, int qtde_alunos) {
     for (int i = 0; i < CURSOS; i++)
     {
         // Passar por cada arquivo `PI_XXX.txt` e cadastrar os projetos
@@ -23,14 +23,12 @@ bool cadastrar_projetos(TG listaProjetos[], char *cursos[], int *qtde_projetos) 
         strcat(nome_do_arquivo, sufixo);
         strcat(nome_do_arquivo, tipo);
 
-        printf("%s\n", nome_do_arquivo);
-
         FILE *projeto = fopen(nome_do_arquivo, "r");
 
         if (projeto == NULL)
         {
             printf("Erro ao abrir %s\n", nome_do_arquivo);
-            continue;
+            return false;
         }
 
         int codigo, codigo_autor, codigo_orientador;
@@ -43,6 +41,23 @@ bool cadastrar_projetos(TG listaProjetos[], char *cursos[], int *qtde_projetos) 
         // Para cada projeto no arquivo
         for (int i = 0; i < num_projetos; i++) {
             fscanf(projeto, "%d %d %d %[^\n]s", &codigo, &codigo_autor, &codigo_orientador, titulo);
+
+            int aluno_encontrado = 0;
+
+            // Verificar se o autor do projeto é um aluno 
+            for (int j = 0; j < qtde_alunos; j++)
+            {
+                if (alunos[j].matricula == codigo_autor)
+                {
+                    aluno_encontrado++;
+                }
+            }
+
+            if (aluno_encontrado != 1)
+            {
+                printf("Autor do projeto não é um aluno\n");
+                return false;
+            }
 
             if (*qtde_projetos >= MAX) {
                 printf("Limite máximo de projetos cadastrados atingido.\n");

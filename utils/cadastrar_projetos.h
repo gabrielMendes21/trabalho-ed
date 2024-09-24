@@ -5,6 +5,6 @@
 
 #include "../structs/TG.h"
 
-bool cadastrar_projetos(TG listaProjetos[], char *cursos[], int *qtde_projetos);
+bool cadastrar_projetos(TG listaProjetos[], Aluno alunos[], char *cursos[], int *qtde_projetos, int qtde_alunos);
 
 #endif

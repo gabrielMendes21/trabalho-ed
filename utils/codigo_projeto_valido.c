@@ -14,5 +14,7 @@ bool codigo_projeto_valido(TG projetos[], int tamanho_vet, char *codigo_projeto)
             return true;
         }
     }
+
+    printf("Codigo invalido. Digite outro\n");
     return false;
 }

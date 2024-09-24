@@ -6,6 +6,5 @@
 #include <stdbool.h>
 #include "../structs/aluno.h"
 
-bool cadastrar_alunos(Aluno alunos[], int *qtde_alunos);
-
+bool cadastrar_alunos(Aluno alunos[], int *qtde_alunos, char *cursos[]);
 #endif

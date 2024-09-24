@@ -6,9 +6,9 @@
 #include "../structs/Eleitor.h"
 
 bool cadastrar_comissao(Eleitor comissao[], int *qtde_eleitores) {
-    FILE *arquivo_comissao = fopen("comissao.txt", "r");
+    FILE *arquivo_comissao = fopen("arquivos_de_entrada/comissao.txt", "r");
     if (arquivo_comissao == NULL) {
-        printf("Erro ao abrir o arquivo.\n");
+        printf("Erro ao abrir o arquivo comissao.txt\n");
         return false;
     }
 
@@ -16,7 +16,6 @@ bool cadastrar_comissao(Eleitor comissao[], int *qtde_eleitores) {
   
     // Ler a quantidade de eleitores na primeira linha
     fscanf(arquivo_comissao, "%d", &c); // Use & para qtde_eleitores
-    printf("Quantidade de eleitores: %d\n\n", c);
 
     // Ler os CPFs e preencher o vetor `comissao`
     for (int i = 0; i < c; i++) {

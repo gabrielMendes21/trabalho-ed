@@ -10,7 +10,6 @@ bool cpf_pode_votar(char *cpf, FILE *arquivo_comissao)
 
     // Lê a primeira linha com a quantidade de CPFs
     fscanf(arquivo_comissao, "%i", &qtd_Cpfs);
-    printf("Quantidade de CPFs: %i\n", qtd_Cpfs);
 
     // Lê cada CPF do arquivo e compara com o CPF inserido 
     for (int i = 0; i < qtd_Cpfs; i++) {
@@ -24,7 +23,7 @@ bool cpf_pode_votar(char *cpf, FILE *arquivo_comissao)
         }
     }
 
-    printf("CPF nao encontrado. Este CPF não pode votar\n");
+    printf("CPF nao encontrado. Este CPF nao pode votar\n");
     fclose(arquivo_comissao);
     return false;
 }

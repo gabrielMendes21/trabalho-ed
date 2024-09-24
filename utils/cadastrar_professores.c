@@ -8,7 +8,7 @@
 
 bool cadastrar_professores(Professor profs[], int *qtde_profs) {
     // Abertura do arquivo
-    FILE *file = fopen("./arquivos_de_entrada/professores.txt", "r");
+    FILE *file = fopen("arquivos_de_entrada/professor.txt", "r");
 
     if (file == NULL) {
         printf("Erro ao abrir o arquivo professor.txt\n");
@@ -16,21 +16,22 @@ bool cadastrar_professores(Professor profs[], int *qtde_profs) {
     }
 
     // Inicializa a contagem de professores
-    *qtde_profs = 0;
-    fscanf(file, "%d\n", qtde_profs);
+    int c;
+    fscanf(file, "%d\n", &c);
 
 
-for (int i = 0; i < *qtde_profs; i++) {
+    for (int i = 0; i < c; i++) {
         char linha[100];
 
         // Lê uma linha inteira do arquivo
-        if (fgets(linha, sizeof(linha), file) != NULL) {
+        if (fgets(linha, sizeof(linha), file) != NULL) 
+        {
             // Usamos sscanf para fazer o parsing da linha
             sscanf(linha, "%d %d %s %d %[^\n]",
-                   &profs[i].codigo,
-                   profs[i].dpto,
-                   &profs[i].pes.idade,
-                   profs[i].pes.nome);
+                   &profs[*qtde_profs].codigo,
+                   profs[*qtde_profs].dpto,
+                   &profs[*qtde_profs].pes.idade,
+                   profs[*qtde_profs].pes.nome);
         }
 
         (*qtde_profs)++;

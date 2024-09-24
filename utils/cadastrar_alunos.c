@@ -6,14 +6,13 @@
 #include "./cadastrar_alunos.h"
 #include "../structs/Aluno.h"
 
-bool cadastrar_alunos(Aluno alunos[], int *qtde_alunos)
+bool cadastrar_alunos(Aluno alunos[], int *qtde_alunos, char *cursos[])
 {
-    // TODO
     // Ler o arquivo `aluno.txt` e criar um dado do tipo `Aluno` para cada um
     // Não se esqueca de atualizar a quantidade de alunos no vetor
     
     // Abertura do arquivo
-    FILE *file = fopen("./arquivos_de_entrada/aluno.txt", "r");
+    FILE *file = fopen("arquivos_de_entrada/aluno.txt", "r");
 
     if (file == NULL) {
         printf("Erro ao abrir o arquivo\n");

@@ -9,7 +9,7 @@
 bool validar_CPF(char cpf[15]) {
     // Verifica o tamanho do CPF (formato 123.456.789-00, total 14 caracteres)
     if (strlen(cpf) != 14) {
-        printf("CPF inválido! Insira com a formatação correta! \n");
+        printf("CPF invalido! Insira com a formatacao correta! \n");
         return false;
     }
 
@@ -18,19 +18,19 @@ bool validar_CPF(char cpf[15]) {
         if (i == 3 || i == 7) {
             // Posições 3 e 7 devem ser pontos '.'
             if (cpf[i] != '.') {
-                printf("CPF sem a formatação correta! \n");
+                printf("CPF sem a formatacao correta! \n");
                 return false;
             }
         } else if (i == 11) {
             // Posição 11 deve ser hífen '-'
             if (cpf[i] != '-') {
-                printf("CPF sem a formatação correta! \n");
+                printf("CPF sem a formatacao correta! \n");
                 return false;
             }
         } else {
             // Todas as outras posições devem ser dígitos
             if (!isdigit(cpf[i])) {
-                printf("CPF sem a formatação correta! \n");
+                printf("CPF sem a formatacao correta! \n");
                 return false;
             }
         }
@@ -66,7 +66,6 @@ bool validar_CPF(char cpf[15]) {
     } else {
         dv1 = 11 - (dv1 % 11);
     }
-    printf("\nPrimeiro dígito verificador (dv1): %d\n\n", dv1);
 
     // Inclui o DV1 no array de números do CPF para o cálculo do DV2
     cpfSomenteNumeros[9] = dv1 + '0'; // Converte DV1 para caractere e armazena
