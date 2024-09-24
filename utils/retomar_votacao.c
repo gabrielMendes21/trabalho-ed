@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <string.h>
 
+#include "./retomar_votacao.h"
 #include "../structs/TG.h"
 #include "../structs/Eleitor.h"
 #include "../structs/professor.h"

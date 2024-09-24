@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+#include "./gerar_resultado.h"
 #include "../structs/aluno.h"
 #include "../structs/TG.h"
 #include "../structs/Eleitor.h"
