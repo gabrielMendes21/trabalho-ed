@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-bool cpf_pode_votar(char *cpf, FILE *arquivo_comissao);
+#include "../structs/Eleitor.h"
+
+bool cpf_pode_votar(char *cpf, Eleitor comissao[], int qtde_eleitores);
 
 #endif

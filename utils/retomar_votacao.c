@@ -15,38 +15,38 @@
 #define MAX_CPF 15
 
 // Função para retomar a votação
-bool retomar_votacao(FILE *parcial_arquivo, TG listaPIs[], Eleitor comissao[], Professor docentes[], Aluno formandos[], int *qtde_TGs, int *qtde_eleitores, int *qtde_docentes, int *qtde_formandos, char *cursos[]) {
+bool retomar_votacao(FILE *parcial_arquivo, TG listaPIs[], Eleitor comissao[], int *qtde_TGs, int *qtde_eleitores) 
+{
     if (parcial_arquivo == NULL) {
         printf("Erro ao abrir o arquivo de votos parciais.\n");
         return false;
     }
 
-    // Recarregar os dados necessários
-    cadastrar_professores(docentes, qtde_docentes);
-    cadastrar_alunos(formandos, qtde_formandos);
-    cadastrar_projetos(listaPIs, cursos, qtde_TGs);
-    cadastrar_comissao(comissao, qtde_eleitores);
+    int num_votos = 0;
 
-    char cpf[MAX_CPF];
-    int codigo_TG;
-    int votos_parciais;
+    fscanf(parcial_arquivo, "%d\n", &num_votos);
 
-    // Lê os votos parciais do arquivo
-    while (fscanf(parcial_arquivo, "%s %d %d", cpf, &codigo_TG, &votos_parciais) != EOF) {
-        // Atualiza o voto do eleitor na comissão
-        for (int i = 0; i < *qtde_eleitores; i++) {
-            if (strcmp(comissao[i].cpf, cpf) == 0 && !comissao[i].votou) {
-                comissao[i].votou = true;
-                comissao[i].codigo_TG = codigo_TG;
-                break;
+    for (int i = 0; i < num_votos; i++)
+    {
+        char cpf[MAX_CPF];
+        int codigo_projeto;
+
+        fscanf(parcial_arquivo, "%s %d", cpf, &codigo_projeto);
+
+        for (int j = 0; j < *qtde_TGs; j++)
+        {
+            if (listaPIs[j].codigo == codigo_projeto)
+            {
+                listaPIs[j].qtde_votos++;
             }
         }
 
-        // Atualiza a quantidade de votos do TG correspondente
-        for (int j = 0; j < *qtde_TGs; j++) {
-            if (listaPIs[j].codigo == codigo_TG) {
-                listaPIs[j].qtde_votos += votos_parciais;
-                break;
+        for (int k = 0; k < *qtde_eleitores; k++)
+        {
+            if (strcmp(comissao[k].cpf, cpf) == 0)
+            {
+                comissao[k].votou = true;
+                comissao[k].codigo_TG = codigo_projeto;
             }
         }
     }

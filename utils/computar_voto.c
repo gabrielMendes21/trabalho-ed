@@ -10,8 +10,8 @@
 bool computar_voto(TG projetos[], int *qtd_projetos, Eleitor *eleitor, char *codigo_projeto)
 {
     // Adicionar o CPF do eleitor e o código do Projeto (TG) votado 
-    if(eleitor->votou){
-        printf("Eleitor já votou!\n");
+    if(eleitor->votou) {
+        printf("Eleitor ja votou!\n");
         return false;
     }
 
@@ -20,7 +20,8 @@ bool computar_voto(TG projetos[], int *qtd_projetos, Eleitor *eleitor, char *cod
 
     // Incrementar a quantidade de votos do projeto
     for(int i = 0; i < *qtd_projetos; i++){
-        if(projetos[i].codigo == atoi(codigo_projeto)){
+        if(projetos[i].codigo == atoi(codigo_projeto))
+        {
             projetos[i].qtde_votos++;
         }
     }

@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include "cadastrar_professores.h"
+#include "../structs/professor.h"
 
 
 
@@ -27,7 +28,7 @@ bool cadastrar_professores(Professor profs[], int *qtde_profs) {
         if (fgets(linha, sizeof(linha), file) != NULL) 
         {
             // Usamos sscanf para fazer o parsing da linha
-            sscanf(linha, "%d %d %s %d %[^\n]",
+            sscanf(linha, "%d %s %d %[^\n]",
                    &profs[*qtde_profs].codigo,
                    profs[*qtde_profs].dpto,
                    &profs[*qtde_profs].pes.idade,

@@ -1,0 +1,34 @@
+PI VENCEDOR
+Codigo: 45
+Titulo: FatecFlix
+Aluno: Pedro Alves
+Curso aluno: LOG
+Orientador: Jorge da Silva
+Depto orientador: ADS
+
+Eleitores presentes:
+773.459.123-02
+393.486.442-20
+
+Eleitores ausentes:
+524.740.032-1X
+
+
+
+PI VENCEDOR
+Codigo: 12
+Titulo: Metodologia para ensino de programação
+Aluno: Camilla Borba
+Curso aluno: DSM
+Orientador: Fulano de Tal
+Depto orientador: AMS
+
+Eleitores presentes:
+773.459.123-02
+393.486.442-20
+
+Eleitores ausentes:
+524.740.032-1X
+
+
+

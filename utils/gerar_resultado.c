@@ -11,67 +11,88 @@ bool gerar_resultado(TG projetos[], Eleitor comissao[], Aluno formandos[], Profe
 {
    
    TG projeto_mais_votado = projetos[0];
-    // procura projeto mais votado
-    for (int i = 1; i < tamanho_proj; i++) {
-        if (projetos[i].qtde_votos > projeto_mais_votado.qtde_votos) {
-            projeto_mais_votado = projetos[i];
+
+   int mais_votado = 0;
+
+    // Procura projeto mais votado
+    for (int i = 0; i < tamanho_proj; i++) {
+        if (projetos[i].qtde_votos > mais_votado) 
+        {
+            mais_votado = projetos[i].qtde_votos;
         }
     }
 
-    Eleitor presentes[tamanho_eleitor];
-    Eleitor ausentes[tamanho_eleitor];
-    int num_presentes = 0;
-    int num_ausentes = 0;
-    // procura eleitores presentes e ausentes
-    for (int i = 0; i < tamanho_eleitor; i++) {
-        if (comissao[i].votou) {
-            presentes[num_presentes++] = comissao[i]; // Armazena o eleitor presente
-        } else {
-            ausentes[num_ausentes++] = comissao[i]; // Armazena o eleitor ausente
-        }
-    }
-
-    Aluno aluno_vencedor = formandos[0];
-    //procura o aluno vencedor pelo código
-    for(int i = 1; i < tamanho_aluno; i++){
-        if(projeto_mais_votado.codigo_autor == formandos[i].matricula){
-            aluno_vencedor = formandos[i];
-        }
-    } 
-
-    Professor professor_vencedor = prof[0];
-    // procura orientador do projeto vencedor pelo código
-    for(int i = 1; i< tamanho_professor; i++){
-        if(projeto_mais_votado.codigo_orientador==prof[i].codigo){
-            professor_vencedor = prof[i];
-        }
-    }
-
-    //abre o arquivo
-    FILE *arquivo = fopen("resultado.txt", "w");
+    // Abre o arquivo
+    FILE *arquivo = fopen("arquivos_de_saida/resultado.txt", "w");
     //verifica se o arquivo foi criado
     if (arquivo == NULL){
         printf("Erro ao criar o arquivo\n");
         return false;
     }
 
-    fprintf(arquivo, "PI VENCEDOR\n");
-    fprintf(arquivo, "Codigo: %d\n", projeto_mais_votado.codigo);
-    fprintf(arquivo, "Titulo: %s\n", projeto_mais_votado.titulo);
-    fprintf(arquivo, "Aluno: %s\n", aluno_vencedor.pes.nome);
-    fprintf(arquivo, "Curso aluno: %s\n", aluno_vencedor.dpto);
-    fprintf(arquivo, "Orientador: %s\n", professor_vencedor.pes.nome);
-    fprintf(arquivo, "Depto orientador: %s\n", professor_vencedor.dpto);
+    for (int i = 0; i < tamanho_proj; i++) {
+        if (projetos[i].qtde_votos == mais_votado) {
+            projeto_mais_votado = projetos[i];
 
-    for(int i = 0; i < num_presentes; i++){
-      fprintf(arquivo, "Eleitores presentes: %s\n",presentes[i].cpf);
+            Eleitor presentes[tamanho_eleitor];
+            Eleitor ausentes[tamanho_eleitor];
+            int num_presentes = 0;
+            int num_ausentes = 0;
+            // procura eleitores presentes e ausentes
+            for (int j = 0; j < tamanho_eleitor; j++) {
+                if (comissao[j].votou) {
+                    presentes[num_presentes++] = comissao[j]; // Armazena o eleitor presente
+                } else {
+                    ausentes[num_ausentes++] = comissao[j]; // Armazena o eleitor ausente
+                }
+            }
+
+            Aluno aluno_vencedor = formandos[0];
+
+            // Procura o aluno vencedor pelo código
+            for(int k = 0; k < tamanho_aluno; k++){
+                if(projeto_mais_votado.codigo_autor == formandos[i].matricula){
+                    aluno_vencedor = formandos[k];
+                }
+            } 
+
+            Professor professor_vencedor = prof[0];
+
+            // Procura orientador do projeto vencedor pelo código
+            for(int c = 0; c < tamanho_professor; c++) {
+                if(projeto_mais_votado.codigo_orientador == prof[c].codigo){
+                    professor_vencedor = prof[c];
+                }
+            }
+
+            fprintf(arquivo, "PI VENCEDOR\n");
+            fprintf(arquivo, "Codigo: %d\n", projeto_mais_votado.codigo);
+            fprintf(arquivo, "Titulo: %s\n", projeto_mais_votado.titulo);
+            fprintf(arquivo, "Aluno: %s\n", aluno_vencedor.pes.nome);
+            fprintf(arquivo, "Curso aluno: %s\n", aluno_vencedor.dpto);
+            fprintf(arquivo, "Orientador: %s\n", professor_vencedor.pes.nome);
+            fprintf(arquivo, "Depto orientador: %s\n", professor_vencedor.dpto);
+
+            fprintf(arquivo, "\nEleitores presentes:\n");
+            for(int l = 0; l < num_presentes; l++){
+                fprintf(arquivo, "%s\n",presentes[l].cpf);
+            }
+
+            fprintf(arquivo, "\n");
+
+            fprintf(arquivo, "Eleitores ausentes:\n");
+            for(int m = 0; m < num_ausentes; m++){
+                fprintf(arquivo, "%s\n", ausentes[m].cpf);
+            }
+
+            fprintf(arquivo, "\n");
+            fprintf(arquivo, "\n");
+            fprintf(arquivo, "\n");
+        }
+
     }
-     for(int i = 0; i < num_ausentes; i++){
-      fprintf(arquivo, "Eleitores ausentes: %s\n",ausentes[i].cpf);
-    }
 
-
-    fclose(arquivo);
+    fclose(arquivo);    
 
     return true;
 

@@ -9,7 +9,7 @@ bool suspender_votacao(Eleitor comissao[], int *qtde_eleitores) {
     int votos = 0;
 
     // Abre o arquivo `parcial.txt` para escrita
-    arquivo = fopen("parcial.txt", "w");
+    arquivo = fopen("arquivos_de_saida/parcial.txt", "w");
     if (arquivo == NULL) {
         printf("Erro ao criar o arquivo parcial.txt\n");
         return false;
