@@ -28,7 +28,7 @@ bool cadastrar_projetos(TG listaProjetos[], Aluno alunos[], char *cursos[], int 
         if (projeto == NULL)
         {
             printf("Erro ao abrir %s\n", nome_do_arquivo);
-            return false;
+            continue;
         }
 
         int codigo, codigo_autor, codigo_orientador;
